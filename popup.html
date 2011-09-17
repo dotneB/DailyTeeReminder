@@ -1,0 +1,44 @@
+<html>
+  <head> 
+  <!-- Add in the CSS magic -->
+  <!-- <link href="css/main.css" rel="Stylesheet" type="text/css" /> -->
+  
+  <!-- We are using the Google Javascript API -->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  
+  <script type="text/javascript" src="sites/teefury.js"></script>
+  <script type="text/javascript" src="sites/riptapparel.js"></script>
+  
+  <script type="text/javascript">     
+  
+  /* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
+  //---------------------------------------------------------------------------
+  
+  // Read in the Google Feeds API for processing the multiple RSS feed
+  google.load("feeds", "1");
+  
+  var sites = new Array(new TeeFury(), new RiptApparel());
+  
+  function updateInfo()
+  {
+		for(var i = 0; i < sites.length; i++)
+		{
+			sites[i].updateInfo(onUpdateDone);
+		}
+  }
+  
+  function onUpdateDone()
+  {
+	console.log("Booyakacha!");
+  }
+                   
+  google.setOnLoadCallback(updateInfo);
+  
+  </script>   
+  </head>
+  <body>
+    <div id="reminderPopup">
+      
+    </div>
+  </body>
+</html>
