@@ -1,0 +1,24 @@
+{
+	"name": "Daily Tee Reminder",
+	"version": "0.1",
+	"description": "Daily Tee Reminder for Teefury, shirt.woot and others",
+	"icons": 
+	{ 	
+		"16": "img/tshirt.png",
+		"32": "img/tshirt.png",
+		"48": "img/tshirt.png",
+		"128": "img/tshirt.png"
+	},  
+	"background_page": "background.html",
+	"browser_action": 
+	{
+		"default_icon": "img/tshirt.png",
+		"popup": "popup.html"
+	},
+	"permissions": 
+	[
+		"http://feeds.feedburner.com/",
+		"http://www.teefury.com/",
+		"http://api.woot.com"
+	]
+}
