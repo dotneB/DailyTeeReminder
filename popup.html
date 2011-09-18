@@ -6,6 +6,7 @@
   <!-- We are using the Google Javascript API -->
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   
+  <script type="text/javascript" src="sites/shirtwoot.js"></script>
   <script type="text/javascript" src="sites/teefury.js"></script>
   <script type="text/javascript" src="sites/riptapparel.js"></script>
   
@@ -15,9 +16,10 @@
   //---------------------------------------------------------------------------
   
   // Read in the Google Feeds API for processing the multiple RSS feed
+  google.load("jquery", "1.6.4");
   google.load("feeds", "1");
   
-  var sites = new Array(new TeeFury(), new RiptApparel());
+  var sites = new Array(new ShirtWoot(), new TeeFury(), new RiptApparel());
   
   function updateInfo()
   {
