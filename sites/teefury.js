@@ -24,10 +24,14 @@ TeeFury.prototype.updateInfo = function(callback)
 
 						var teeImageSrc = teeImagesRaw[0].getAttribute("src");
 						
-						localStorage["TeeFury_teeTitle"] = teeTitleText;
-						localStorage["TeeFury_teeImgSrc"] = teeImageSrc;
+						if (teeImageSrc != localStorage["TeeFury_teeImgSrc"]) 
+						{
+							localStorage["TeeFury_unread"] = "true";
+							localStorage["TeeFury_teeTitle"] = teeTitleText;
+							localStorage["TeeFury_teeImgSrc"] = teeImageSrc;
+						}
 					}
-					callback();
+					callback(localStorage["TeeFury_unread"]);
 				});
 }
 
@@ -43,6 +47,7 @@ TeeFury.prototype.getLatestTeeImgSrc = function()
 
 TeeFury.prototype.writeSlide = function(container) 
 {
+	localStorage["TeeFury_unread"] = "false";
 	$(container).append(
 	"<div class=\"slide\">" +
 			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["TeeFury_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +

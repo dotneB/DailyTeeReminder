@@ -23,11 +23,14 @@ RiptApparel.prototype.updateInfo = function(callback)
 						var teeImagesRaw = tempDiv.getElementsByTagName("img");
 
 						var teeImageSrc = teeImagesRaw[0].getAttribute("src");
-						
-						localStorage["RiptApparel_teeTitle"] = teeTitleText;
-						localStorage["RiptApparel_teeImgSrc"] = teeImageSrc;
+						if (teeImageSrc != localStorage["RiptApparel_teeImgSrc"]) 
+						{
+							localStorage["RiptApparel_unread"] = "true";
+							localStorage["RiptApparel_teeTitle"] = teeTitleText;
+							localStorage["RiptApparel_teeImgSrc"] = teeImageSrc;
+						}
 					}
-					callback();
+					callback(localStorage["RiptApparel_unread"]);
 				});
 }
 
@@ -43,6 +46,7 @@ RiptApparel.prototype.getLatestTeeImgSrc = function()
 
 RiptApparel.prototype.writeSlide = function(container) 
 {
+	localStorage["RiptApparel_unread"] = "false";
 	$(container).append(
 	"<div class=\"slide\">" +
 			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["RiptApparel_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +

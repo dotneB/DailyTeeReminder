@@ -12,21 +12,29 @@ ShirtWoot.prototype.updateInfo = function(callback)
 					if (!result.error) 
 					{
 						var item = $(result.xmlDocument).find('item');
-						localStorage["ShirtWoot_teeTitle"] = item.find('title').text();
+						var teeTitleText = item.find('title').text();
 						var jSections = item.children();
 						
+						var teeImageSrc = localStorage["ShirtWoot_teeImgSrc"];
 						jSections.each(
 							function( intSectionIndex )
 							{
 								if($( this )[ 0 ].nodeName == "woot:detailimage")
 								{
 									// Set the term text.
-									localStorage["ShirtWoot_teeImgSrc"] = $( this ).text();
+									teeImageSrc = $( this ).text();
 								}
 							}
 						);
+						
+						if (teeImageSrc != localStorage["ShirtWoot_teeImgSrc"]) 
+						{
+							localStorage["ShirtWoot_unread"] = "true";
+							localStorage["ShirtWoot_teeTitle"] = teeTitleText;
+							localStorage["ShirtWoot_teeImgSrc"] = teeImageSrc;
+						}
 					}
-					callback();
+					callback(localStorage["ShirtWoot_unread"]);
 				});
 }
 
@@ -42,6 +50,7 @@ ShirtWoot.prototype.getLatestTeeImgSrc = function()
 
 ShirtWoot.prototype.writeSlide = function(container) 
 {
+	localStorage["ShirtWoot_unread"] = false;
 	$(container).append(
 	"<div class=\"slide\">" +
 			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["ShirtWoot_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
