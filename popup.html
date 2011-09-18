@@ -20,9 +20,13 @@
   // Read in the Google Feeds API for processing the multiple RSS feed
   google.load("feeds", "1");
   
-  var sites = new Array(new ShirtWoot(), new TeeFury(), new RiptApparel());
+  var sites = new Array(
+							new ShirtWoot(), 
+							new TeeFury(), 
+							new RiptApparel()
+						);
   
-  function updateInfo()
+  function init()
   {
 		for(var i = 0; i < sites.length; i++)
 		{
@@ -52,13 +56,8 @@
 				}
 			});
   }
-  
-  function onUpdateDone()
-  {
-	console.log("Booyakacha!");
-  }
                    
-  google.setOnLoadCallback(updateInfo);
+  google.setOnLoadCallback(init);
   
   </script>   
   </head>
