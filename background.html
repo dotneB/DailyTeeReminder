@@ -31,9 +31,14 @@
   {
 		for(var i = 0; i < sites.length; i++)
 		{
-			sites[i].updateInfo();
+			sites[i].updateInfo(onUpdateDone);
 		}
 		setTimeout(check, pollInterval);
+  }
+  
+  function onUpdateDone()
+  {
+	console.log("update done");
   }
                    
   google.setOnLoadCallback(check);
