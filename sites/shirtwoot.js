@@ -13,7 +13,6 @@ ShirtWoot.prototype.updateInfo = function(callback)
 					{
 						var item = $(result.xmlDocument).find('item');
 						localStorage["ShirtWoot_teeTitle"] = item.find('title').text();
-						console.log( item.find("woot\\:detailimage").text() );
 						var jSections = item.children();
 						
 						jSections.each(

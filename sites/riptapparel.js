@@ -16,8 +16,6 @@ RiptApparel.prototype.updateInfo = function(callback)
 						var teeTitleText  = teeTitleWords[0].split(" by ")[0];
 						var teeAuthorText = teeTitleWords[0].split(" by ")[1];
 						var teePriceText  = teeTitleWords[1];
-						
-						
 						 
 						// The tee's image is embedded within the content, so again, we have to parse it manually
 						var tempDiv = document.createElement("div");
@@ -28,9 +26,6 @@ RiptApparel.prototype.updateInfo = function(callback)
 						
 						localStorage["RiptApparel_teeTitle"] = teeTitleText;
 						localStorage["RiptApparel_teeImgSrc"] = teeImageSrc;
-						
-						console.log(teeTitleText);
-						console.log(teeImageSrc);
 					}
 					callback();
 				});
