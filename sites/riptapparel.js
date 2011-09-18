@@ -45,3 +45,15 @@ RiptApparel.prototype.getLatestTeeImgSrc = function()
 {
 	return localStorage["RiptApparel_teeImgSrc"];
 }
+
+RiptApparel.prototype.writeSlide = function(container) 
+{
+	$(container).append(
+	"<div class=\"slide\">" +
+			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["RiptApparel_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
+			"<div class=\"caption\" style=\"bottom:0\">" +
+				"<p>Ript Apparel: " + localStorage["RiptApparel_teeTitle"] +"</p>" +
+			"</div>" +
+		"</div>"
+	);
+}

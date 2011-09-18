@@ -45,3 +45,15 @@ TeeFury.prototype.getLatestTeeImgSrc = function()
 {
 	return localStorage["TeeFury_teeImgSrc"];
 }
+
+TeeFury.prototype.writeSlide = function(container) 
+{
+	$(container).append(
+	"<div class=\"slide\">" +
+			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["TeeFury_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
+			"<div class=\"caption\" style=\"bottom:0\">" +
+				"<p>Tee Fury: " + localStorage["TeeFury_teeTitle"] +"</p>" +
+			"</div>" +
+		"</div>"
+	);
+}

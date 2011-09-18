@@ -13,7 +13,7 @@ ShirtWoot.prototype.updateInfo = function(callback)
 					{
 						var item = $(result.xmlDocument).find('item');
 						localStorage["ShirtWoot_teeTitle"] = item.find('title').text();
-						
+						console.log( item.find("woot\\:detailimage").text() );
 						var jSections = item.children();
 						
 						jSections.each(
@@ -39,4 +39,16 @@ ShirtWoot.prototype.getLatestTeeTitle = function()
 ShirtWoot.prototype.getLatestTeeImgSrc = function() 
 {
 	return localStorage["ShirtWoot_teeImgSrc"];
+}
+
+ShirtWoot.prototype.writeSlide = function(container) 
+{
+	$(container).append(
+	"<div class=\"slide\">" +
+			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["ShirtWoot_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
+			"<div class=\"caption\" style=\"bottom:0\">" +
+				"<p>shirt.woot: " + localStorage["ShirtWoot_teeTitle"] +"</p>" +
+			"</div>" +
+		"</div>"
+	);
 }
