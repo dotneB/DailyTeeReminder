@@ -1,4 +1,13 @@
-function ShirtWoot() { }
+ShirtWoot.prototype = new BaseSite;
+ShirtWoot.prototype.constructor = ShirtWoot;
+
+function ShirtWoot()
+{
+    BaseSite.call(this);
+    this.siteName = "ShirtWoot";
+	this.siteDisplayName = "Shirt Woot";
+	this.siteURL = "http://shirt.woot.com";
+}
 
 ShirtWoot.prototype.updateInfo = function(callback) 
 {
@@ -29,35 +38,11 @@ ShirtWoot.prototype.updateInfo = function(callback)
 						
 						if (teeImageSrc != localStorage["ShirtWoot_teeImgSrc"]) 
 						{
-							localStorage["ShirtWoot_unread"] = "true";
+							localStorage["ShirtWoot_read"] = "false";
 							localStorage["ShirtWoot_teeTitle"] = teeTitleText;
 							localStorage["ShirtWoot_teeImgSrc"] = teeImageSrc;
 						}
 					}
-					callback(localStorage["ShirtWoot_unread"]);
+					callback(localStorage["ShirtWoot_read"]);
 				});
-}
-
-ShirtWoot.prototype.getLatestTeeTitle = function() 
-{
-	return localStorage["ShirtWoot_teeTitle"];
-}
-
-ShirtWoot.prototype.getLatestTeeImgSrc = function() 
-{
-	return localStorage["ShirtWoot_teeImgSrc"];
-}
-
-ShirtWoot.prototype.writeSlide = function(container) 
-{
-	$(container).append(
-	"<div class=\"slide\">" +
-			( localStorage["ShirtWoot_unread"] == "false" ? "" : "<img src=\"img/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") + 
-			"<a href=\"#\" onclick=\"chrome.tabs.create({url: 'http://shirt.woot.com/'})\"><img src=\"" + localStorage["ShirtWoot_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
-			"<div class=\"caption\" style=\"bottom:0\">" +
-				"<p>shirt.woot: " + localStorage["ShirtWoot_teeTitle"] +"</p>" +
-			"</div>" +
-		"</div>"
-	);
-	localStorage["ShirtWoot_unread"] = "false";
 }
