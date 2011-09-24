@@ -1,79 +1,79 @@
 <html>
-  <head> 
-  <!-- Add in the CSS magic -->
-  <link href="css/main.css" rel="Stylesheet" type="text/css" />
-  
-  <!-- We are using the Google Javascript API -->
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
-  <script type="text/javascript" src="js/slides.min.jquery.js"></script>
-  
-  <script type="text/javascript" src="sites/_BaseSite.js"></script>
-  
-  <script type="text/javascript" src="sites/shirtwoot.js"></script>
-  <script type="text/javascript" src="sites/teefury.js"></script>
-  <script type="text/javascript" src="sites/riptapparel.js"></script>
-  
-  <script type="text/javascript">     
-  
-  /* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
-  //---------------------------------------------------------------------------
-  
-  // Read in the Google Feeds API for processing the multiple RSS feed
-  google.load("feeds", "1");
-  
-  var sites = new Array(
-							new ShirtWoot(), 
-							new TeeFury(), 
-							new RiptApparel()
-						);
-  
-  function init()
-  {
-		for(var i = 0; i < sites.length; i++)
-		{
-			sites[i].writeSlide($(".slides_container"));
-		}
-		chrome.browserAction.setBadgeText({text:""});
-		
-		$('#slides').slides({
-				preload: true,
-				preloadImage: 'img/loading.gif',
-				play: 5000,
-				pause: 2500,
-				hoverPause: true,
-				animationStart: function(current){
-					$('.caption').animate({
-						bottom:-35
-					},100);
-				},
-				animationComplete: function(current){
-					$('.caption').animate({
-						bottom:0
-					},200);
-				},
-				slidesLoaded: function() {
-					$('.caption').animate({
-						bottom:0
-					},200);
-				}
-			});
-  }
+    <head> 
+    <!-- Add in the CSS magic -->
+    <link href="css/main.css" rel="Stylesheet" type="text/css" />
+
+    <!-- We are using the Google Javascript API -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.min.jquery.js"></script>
+
+    <script type="text/javascript" src="sites/_BaseSite.js"></script>
+
+    <script type="text/javascript" src="sites/shirtwoot.js"></script>
+    <script type="text/javascript" src="sites/teefury.js"></script>
+    <script type="text/javascript" src="sites/riptapparel.js"></script>
+
+    <script type="text/javascript">     
+
+    /* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
+    //---------------------------------------------------------------------------
+
+    // Read in the Google Feeds API for processing the multiple RSS feed
+    google.load("feeds", "1");
+
+    var sites = new Array(
+                            new ShirtWoot(), 
+                            new TeeFury(), 
+                            new RiptApparel()
+                        );
+
+    function init()
+    {
+        for(var i = 0; i < sites.length; i++)
+        {
+            sites[i].writeSlide($(".slides_container"));
+        }
+        chrome.browserAction.setBadgeText({text:""});
+        
+        $('#slides').slides({
+                preload: true,
+                preloadImage: 'img/loading.gif',
+                play: 5000,
+                pause: 2500,
+                hoverPause: true,
+                animationStart: function(current){
+                    $('.caption').animate({
+                        bottom:-35
+                    },100);
+                },
+                animationComplete: function(current){
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                },
+                slidesLoaded: function() {
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                }
+            });
+    }
                    
-  google.setOnLoadCallback(init);
-  
-  </script>   
-  </head>
-  <body>
+    google.setOnLoadCallback(init);
+
+    </script>   
+    </head>
+    <body>
     <div id="container">
-		<div id="example">
-			<div id="slides">
-				<div class="slides_container">
-				</div>
-				<a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-				<a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-			</div>
-		</div>
+        <div id="example">
+            <div id="slides">
+                <div class="slides_container">
+                </div>
+                <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+                <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+            </div>
+        </div>
     </div>
-  </body>
+    </body>
 </html>

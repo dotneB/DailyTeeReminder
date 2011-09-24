@@ -1,58 +1,58 @@
 <html>
-	<head> 
+    <head> 
 
-	<!-- We are using the Google Javascript API -->
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
-	<script type="text/javascript" src="js/slides.min.jquery.js"></script>
+    <!-- We are using the Google Javascript API -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+    <script type="text/javascript" src="js/slides.min.jquery.js"></script>
   
-  <script type="text/javascript" src="sites/_BaseSite.js"></script>
+    <script type="text/javascript" src="sites/_BaseSite.js"></script>
 
-	<script type="text/javascript" src="sites/shirtwoot.js"></script>
-	<script type="text/javascript" src="sites/teefury.js"></script>
-	<script type="text/javascript" src="sites/riptapparel.js"></script>
+    <script type="text/javascript" src="sites/shirtwoot.js"></script>
+    <script type="text/javascript" src="sites/teefury.js"></script>
+    <script type="text/javascript" src="sites/riptapparel.js"></script>
 
-	<script type="text/javascript">     
+    <script type="text/javascript">     
 
-	/* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
-	//---------------------------------------------------------------------------
+    /* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
+    //---------------------------------------------------------------------------
 
-	// Background event variables
-	var pollInterval = 1000 * 60 * 60 * 1;
+    // Background event variables
+    var pollInterval = 1000 * 60 * 60 * 1;
 
-	// Read in the Google Feeds API for processing the multiple RSS feed
-	google.load("feeds", "1");
+    // Read in the Google Feeds API for processing the multiple RSS feed
+    google.load("feeds", "1");
 
-	var sites = new Array(
-							new ShirtWoot(), 
-							new TeeFury(), 
-							new RiptApparel()
-						);
+    var sites = new Array(
+                            new ShirtWoot(), 
+                            new TeeFury(), 
+                            new RiptApparel()
+                        );
 
-	function check()
-	{
-		for(var i = 0; i < sites.length; i++)
-		{
-			sites[i].updateInfo(onUpdateDone);
-		}
-		setTimeout(check, pollInterval);
-	}
+    function check()
+    {
+        for(var i = 0; i < sites.length; i++)
+        {
+            sites[i].updateInfo(onUpdateDone);
+        }
+        setTimeout(check, pollInterval);
+    }
 
-	function onUpdateDone(isNew)
-	{
-		if(isNew == "true") 
-		{
-			chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
-			chrome.browserAction.setBadgeText({text:"!"});
-		}
-		
-		console.log("update done");
-	}
-				   
-	google.setOnLoadCallback(check);
+    function onUpdateDone(isNew)
+    {
+        if(isNew == "true") 
+        {
+            chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
+            chrome.browserAction.setBadgeText({text:"!"});
+        }
+        
+        console.log("update done");
+    }
+                   
+    google.setOnLoadCallback(check);
 
-	</script>   
-	</head>
-	<body>
-	</body>
+    </script>   
+    </head>
+    <body>
+    </body>
 </html>
