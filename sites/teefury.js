@@ -50,7 +50,7 @@ TeeFury.prototype.writeSlide = function(container)
 	$(container).append(
 	"<div class=\"slide\">" +
 			( localStorage["TeeFury_unread"] == "false" ? "" : "<img src=\"img/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") + 
-			"<a href=\"\" title=\"\" target=\"_blank\"><img src=\"" + localStorage["TeeFury_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
+			"<a href=\"#\" onclick=\"chrome.tabs.create({url: 'http://www.teefury.com/'})\"><img src=\"" + localStorage["TeeFury_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
 			"<div class=\"caption\" style=\"bottom:0\">" +
 				"<p>Tee Fury: " + localStorage["TeeFury_teeTitle"] +"</p>" +
 			"</div>" +
