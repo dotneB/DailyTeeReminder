@@ -1,4 +1,13 @@
-function TeeFury() { }
+TeeFury.prototype = new BaseSite;
+TeeFury.prototype.constructor = TeeFury;
+
+function TeeFury()
+{
+    BaseSite.call(this);
+    this.siteName = "TeeFury";
+	this.siteDisplayName = "Tee Fury";
+	this.siteURL = "http://www.teefury.com";
+}
 
 TeeFury.prototype.updateInfo = function(callback) 
 {
@@ -26,35 +35,11 @@ TeeFury.prototype.updateInfo = function(callback)
 						
 						if (teeImageSrc != localStorage["TeeFury_teeImgSrc"]) 
 						{
-							localStorage["TeeFury_unread"] = "true";
+							localStorage["TeeFury_read"] = "false";
 							localStorage["TeeFury_teeTitle"] = teeTitleText;
 							localStorage["TeeFury_teeImgSrc"] = teeImageSrc;
 						}
 					}
-					callback(localStorage["TeeFury_unread"]);
+					callback(localStorage["TeeFury_read"]);
 				});
-}
-
-TeeFury.prototype.getLatestTeeTitle = function() 
-{
-	return localStorage["TeeFury_teeTitle"];
-}
-
-TeeFury.prototype.getLatestTeeImgSrc = function() 
-{
-	return localStorage["TeeFury_teeImgSrc"];
-}
-
-TeeFury.prototype.writeSlide = function(container) 
-{
-	$(container).append(
-	"<div class=\"slide\">" +
-			( localStorage["TeeFury_unread"] == "false" ? "" : "<img src=\"img/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") + 
-			"<a href=\"#\" onclick=\"chrome.tabs.create({url: 'http://www.teefury.com/'})\"><img src=\"" + localStorage["TeeFury_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
-			"<div class=\"caption\" style=\"bottom:0\">" +
-				"<p>Tee Fury: " + localStorage["TeeFury_teeTitle"] +"</p>" +
-			"</div>" +
-		"</div>"
-	);
-	localStorage["TeeFury_unread"] = "false";	
 }

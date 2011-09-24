@@ -1,4 +1,13 @@
-function RiptApparel() { }
+RiptApparel.prototype = new BaseSite;
+RiptApparel.prototype.constructor = RiptApparel;
+
+function RiptApparel()
+{
+    BaseSite.call(this);
+    this.siteName = "RiptApparel";
+	this.siteDisplayName = "Ript Apparel";
+	this.siteURL = "http://www.riptapparel.com";
+}
 
 RiptApparel.prototype.updateInfo = function(callback) 
 {
@@ -25,36 +34,11 @@ RiptApparel.prototype.updateInfo = function(callback)
 						var teeImageSrc = teeImagesRaw[0].getAttribute("src");
 						if (teeImageSrc != localStorage["RiptApparel_teeImgSrc"]) 
 						{
-							localStorage["RiptApparel_unread"] = "true";
+							localStorage["RiptApparel_read"] = "false";
 							localStorage["RiptApparel_teeTitle"] = teeTitleText;
 							localStorage["RiptApparel_teeImgSrc"] = teeImageSrc;
 						}
 					}
-					callback(localStorage["RiptApparel_unread"]);
+					callback(localStorage["RiptApparel_read"]);
 				});
-}
-
-RiptApparel.prototype.getLatestTeeTitle = function() 
-{
-	return localStorage["RiptApparel_teeTitle"];
-}
-
-RiptApparel.prototype.getLatestTeeImgSrc = function() 
-{
-	return localStorage["RiptApparel_teeImgSrc"];
-}
-
-RiptApparel.prototype.writeSlide = function(container) 
-{
-	$(container).append(
-	"<div class=\"slide\">" +
-			( localStorage["RiptApparel_unread"] == "false" ? "" : "<img src=\"img/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") + 
-			"<a href=\"#\" onclick=\"chrome.tabs.create({url: 'http://riptapparel.com/'})\"><img src=\"" + localStorage["RiptApparel_teeImgSrc"] + "\" width=\"722\" height=\"480\"></a>" +
-			"<div class=\"caption\" style=\"bottom:0\">" +
-				"<p>Ript Apparel: " + localStorage["RiptApparel_teeTitle"] +"</p>" +
-			"</div>" +
-		"</div>"
-	);
-	
-	localStorage["RiptApparel_unread"] = "false";
 }
