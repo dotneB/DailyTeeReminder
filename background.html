@@ -38,9 +38,9 @@
         setTimeout(check, pollInterval);
     }
 
-    function onUpdateDone(isNew)
+    function onUpdateDone(isRead)
     {
-        if(isNew == "true") 
+        if(isRead == "false") 
         {
             chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
             chrome.browserAction.setBadgeText({text:"!"});
