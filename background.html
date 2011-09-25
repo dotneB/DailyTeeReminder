@@ -1,58 +1,42 @@
 <html>
-    <head> 
+    <!-- Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php -->
+    <head>
 
-    <!-- We are using the Google Javascript API -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
-    <script type="text/javascript" src="js/slides.min.jquery.js"></script>
-  
+
     <script type="text/javascript" src="sites/_BaseSite.js"></script>
+    <script type="text/javascript" src="sites/_sites.js"></script>
 
-    <script type="text/javascript" src="sites/shirtwoot.js"></script>
-    <script type="text/javascript" src="sites/teefury.js"></script>
-    <script type="text/javascript" src="sites/riptapparel.js"></script>
-
-    <script type="text/javascript">     
-
-    /* Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php */
-    //---------------------------------------------------------------------------
-
-    // Background event variables
+    <script type="text/javascript">
     var pollInterval = 1000 * 60 * 60 * 1;
-
-    // Read in the Google Feeds API for processing the multiple RSS feed
     google.load("feeds", "1");
+	google.setOnLoadCallback(pageLoaded);
 
-    var sites = new Array(
-                            new ShirtWoot(), 
-                            new TeeFury(), 
-                            new RiptApparel()
-                        );
-
-    function check()
+    function pageLoaded()
     {
-        for(var i = 0; i < sites.length; i++)
+        loadSites();
+        updateSites();
+    }
+
+    function updateSites()
+    {
+        for(var i = 0; i < window.sites.length; i++)
         {
-            sites[i].updateInfo(onUpdateDone);
+            window.sites[i].updateInfo(onUpdateDone);
         }
-        setTimeout(check, pollInterval);
+        setTimeout(updateSites, pollInterval);
     }
 
     function onUpdateDone(isRead)
     {
-        if(isRead == "false") 
+        if(isRead == "false")
         {
             chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
             chrome.browserAction.setBadgeText({text:"!"});
         }
-        
-        console.log("update done");
     }
-                   
-    google.setOnLoadCallback(check);
-
-    </script>   
+    </script>
     </head>
-    <body>
-    </body>
+    <body></body>
 </html>

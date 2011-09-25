@@ -9,21 +9,21 @@ function ShirtWoot()
     this.siteURL = "http://shirt.woot.com";
 }
 
-ShirtWoot.prototype.updateInfo = function(callback) 
+ShirtWoot.prototype.updateInfo = function(callback)
 {
     var feed = new google.feeds.Feed("http://api.woot.com/1/sales/current.rss/shirt.woot.com");
     feed.setNumEntries(1);
     feed.setResultFormat(google.feeds.Feed.MIXED_FORMAT);
 
     // Process the feed, building the display
-    feed.load(function(result) 
+    feed.load(function(result)
                 {
-                    if (!result.error) 
+                    if (!result.error)
                     {
                         var item = $(result.xmlDocument).find('item');
                         var teeTitleText = item.find('title').text();
                         var jSections = item.children();
-                        
+
                         var teeImageSrc = localStorage["ShirtWoot_teeImgSrc"];
                         jSections.each(
                             function( intSectionIndex )
@@ -35,8 +35,8 @@ ShirtWoot.prototype.updateInfo = function(callback)
                                 }
                             }
                         );
-                        
-                        if (teeImageSrc != localStorage["ShirtWoot_teeImgSrc"]) 
+
+                        if (teeImageSrc != localStorage["ShirtWoot_teeImgSrc"])
                         {
                             localStorage["ShirtWoot_read"] = "false";
                             localStorage["ShirtWoot_teeTitle"] = teeTitleText;
