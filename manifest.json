@@ -1,7 +1,7 @@
 {
 	"name": "Daily Tee Reminder",
-	"version": "0.1",
-	"description": "Daily Tee Reminder for Teefury, shirt.woot and Ript Apparel",
+	"version": "1.0.0",
+	"description": "Daily Tee Reminder will let you know when there is new t-shirts available on Teefury, shirt.woot and Ript Apparel.",
 	"icons": 
 	{ 	
 		"16": "img/tshirt.png",
