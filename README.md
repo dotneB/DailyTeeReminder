@@ -1,5 +1,6 @@
 # Daily Tee Reminder
-Daily Tee Reminder will let you know when there is new t-shirts available on Teefury, shirt.woot and Ript Apparel.
+Daily Tee Reminder will let you know when there is new t-shirts available on Teefury, shirt.woot and Ript Apparel.  
+https://chrome.google.com/webstore/detail/jejgpidmmdbklgglckbldbpojdpekgff
 
 ### Bugs
 Found a bug? [Submit it here](https://github.com/dotneB/DailyTeeReminder/issues/new)
