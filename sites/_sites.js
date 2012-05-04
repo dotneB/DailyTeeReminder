@@ -4,12 +4,14 @@ function loadSites()
     loadSiteJS("sites/teefury.js");
     loadSiteJS("sites/riptapparel.js");
     loadSiteJS("sites/theyetee.js");
+    loadSiteJS("sites/qwertee.js");
 
     window.sites = new Array(
                             new ShirtWoot(),
                             new TeeFury(),
                             new RiptApparel(),
-							new TheYeTee()
+							new TheYeTee(),
+							new Qwertee()
                         );
 }
 
