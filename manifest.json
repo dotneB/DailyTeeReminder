@@ -18,7 +18,7 @@
 	"permissions": 
 	[
 		"http://feeds.feedburner.com/",
-		"http://api.woot.com",
+		"http://api.woot.com/",
 		"http://theyetee.com/feeds/"
 	]
 }
