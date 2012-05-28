@@ -1,5 +1,5 @@
 # Daily Tee Reminder
-Daily Tee Reminder will let you know when there is new t-shirts available on Teefury, shirt.woot, Qwertee, TheYeTee and Ript Apparel.  
+Daily Tee Reminder will let you know when there is new t-shirts available on various t-shirt websites.  
 https://chrome.google.com/webstore/detail/jejgpidmmdbklgglckbldbpojdpekgff
 
 ### Bugs
@@ -10,6 +10,17 @@ Want your favorites T-shirt website to be added?
 Create a new bug letting me know which site you want added  
 or  
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
+
+### Changelogs
+###### 1.2.0 (2012-05-27)
+* Added support for Tilteed (suggestion submitted by mandorfe)
+
+###### 1.1.0 (2012-05-03)
+* Added support for Qwertee (suggestion submitted by hosang)
+* Added support for TheYeTee
+
+###### 1.0.0 (2011-10-29)
+* Initial release. Support for Teefury, shirt.woot and Ript Apparel
 
 ### License 
 Copyright (c) 2011 Benoit Ratte  

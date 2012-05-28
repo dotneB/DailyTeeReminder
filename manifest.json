@@ -1,7 +1,7 @@
 {
 	"name": "Daily Tee Reminder",
-	"version": "1.1.0",
-	"description": "Daily Tee Reminder will let you know when there is new t-shirts available on Teefury, shirt.woot, Qwertee, TheYeTee and Ript Apparel",
+	"version": "1.2.0",
+	"description": "Daily Tee Reminder will let you know when there is new t-shirts available on various t-shirt websites",
 	"icons": 
 	{ 	
 		"16": "img/tshirt.png",
@@ -20,6 +20,7 @@
 		"http://feeds.feedburner.com/",
 		"http://api.woot.com/",
 		"http://theyetee.com/feeds/",
-		"http://www.qwertee.com/"
+		"http://www.qwertee.com/",
+		"http://www.tilteed.com/home/rss"
 	]
 }

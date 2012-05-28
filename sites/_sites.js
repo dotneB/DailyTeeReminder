@@ -5,13 +5,15 @@ function loadSites()
     loadSiteJS("sites/riptapparel.js");
     loadSiteJS("sites/theyetee.js");
     loadSiteJS("sites/qwertee.js");
+    loadSiteJS("sites/tilteed.js");
 
     window.sites = new Array(
                             new ShirtWoot(),
                             new TeeFury(),
                             new RiptApparel(),
 							new TheYeTee(),
-							new Qwertee()
+							new Qwertee(),
+							new Tilteed()
                         );
 }
 
