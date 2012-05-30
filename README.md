@@ -12,6 +12,9 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
+###### 1.2.1 (2012-05-29)
+* Bug fix: Tilteed was always reporting it had a new shirt to display
+
 ###### 1.2.0 (2012-05-27)
 * Added support for Tilteed (suggestion submitted by mandorfe)
 

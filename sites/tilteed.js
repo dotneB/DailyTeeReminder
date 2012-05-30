@@ -29,12 +29,12 @@ Tilteed.prototype.updateInfo = function(callback)
                         tempDiv.innerHTML = result.feed.entries[0].content;
                         var teeImagesRaw = tempDiv.getElementsByTagName("img");
 
-                        var teeImageSrc = teeImagesRaw[0].getAttribute("src");
+                        var teeImageSrc = "http://www.tilteed.com" + teeImagesRaw[0].getAttribute("src");
                         if (teeImageSrc != localStorage["Tilteed_teeImgSrc"])
                         {
                             localStorage["Tilteed_read"] = "false";
                             localStorage["Tilteed_teeTitle"] = teeTitleText;
-                            localStorage["Tilteed_teeImgSrc"] = "http://www.tilteed.com" + teeImageSrc;
+                            localStorage["Tilteed_teeImgSrc"] = teeImageSrc;
                         }
                     }
                     callback(localStorage["Tilteed_read"]);
