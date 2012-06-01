@@ -4,14 +4,16 @@ TeeFury.prototype.constructor = TeeFury;
 function TeeFury()
 {
     BaseSite.call(this);
-    this.siteName = "TeeFury";
+    this.siteName        = "TeeFury";
     this.siteDisplayName = "Tee Fury";
-    this.siteURL = "http://www.teefury.com";
+    this.siteURL         = "http://www.teefury.com";
+    this.siteFeedURL     = "http://feeds.feedburner.com/TeefuryDailyTee";
 }
 
 TeeFury.prototype.updateInfo = function(callback)
 {
-    var feed = new google.feeds.Feed("http://feeds.feedburner.com/TeefuryDailyTee");
+    var self = this; // Keep a reference to this, to be used inside the feed callback
+    var feed = new google.feeds.Feed(self.siteFeedURL);
     feed.setNumEntries(1);
 
     // Process the feed, building the display
@@ -30,16 +32,10 @@ TeeFury.prototype.updateInfo = function(callback)
                         var tempDiv = document.createElement("div");
                         tempDiv.innerHTML = result.feed.entries[0].content;
                         var teeImagesRaw = tempDiv.getElementsByTagName("img");
-
                         var teeImageSrc = teeImagesRaw[0].getAttribute("src");
 
-                        if (teeImageSrc != localStorage["TeeFury_teeImgSrc"])
-                        {
-                            localStorage["TeeFury_read"] = "false";
-                            localStorage["TeeFury_teeTitle"] = teeTitleText;
-                            localStorage["TeeFury_teeImgSrc"] = teeImageSrc;
-                        }
+                        self.setContent(teeTitleText, teeImageSrc);
                     }
-                    callback(localStorage["TeeFury_read"]);
+                    callback(self.isRead());
                 });
 }
