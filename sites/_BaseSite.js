@@ -21,7 +21,7 @@ BaseSite.prototype.setContent      = function(teeTitle, teeImage)
 {
     if (teeImage != this.getTeeImage())
     {
-        this.setRead("false");
+        this.setRead(false);
         this.setTeeTitle(teeTitle);
         this.setTeeImage(teeImage);
     }
