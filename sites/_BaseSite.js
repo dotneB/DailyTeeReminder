@@ -32,7 +32,7 @@ BaseSite.prototype.writeSlide      = function(container)
     $(container).append(
         "<div class=\"slide\">" +
             "<div class=\"slide_content\">" +
-                ( this.isRead() ? "" : "<img src=\"img/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") +
+                ( this.isRead() ? "" : "<img src=\"assets/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">") +
                 "<a href=\"#\" onclick=\"chrome.tabs.create({url: '" + this.siteURL + "'})\"><img src=\"" + this.getTeeImage() + "\" width=\"" + this.imgWidth + "\" height=\"" + this.imgHeight + "\"></a>" +                
             "</div>" +
             "<div class=\"caption\" style=\"bottom:0\">" +
