@@ -4,14 +4,16 @@ ShirtWoot.prototype.constructor = ShirtWoot;
 function ShirtWoot()
 {
     BaseSite.call(this);
-    this.siteName = "ShirtWoot";
+    this.siteName        = "ShirtWoot";
     this.siteDisplayName = "Shirt Woot";
-    this.siteURL = "http://shirt.woot.com";
+    this.siteURL         = "http://shirt.woot.com";
+    this.siteFeedURL     = "http://api.woot.com/1/sales/current.rss/shirt.woot.com";
 }
 
 ShirtWoot.prototype.updateInfo = function(callback)
 {
-    var feed = new google.feeds.Feed("http://api.woot.com/1/sales/current.rss/shirt.woot.com");
+    var self = this; // Keep a reference to this, to be used inside the feed callback
+    var feed = new google.feeds.Feed(self.siteFeedURL);
     feed.setNumEntries(1);
     feed.setResultFormat(google.feeds.Feed.MIXED_FORMAT);
 
@@ -24,7 +26,7 @@ ShirtWoot.prototype.updateInfo = function(callback)
                         var teeTitleText = item.find('title').text();
                         var jSections = item.children();
 
-                        var teeImageSrc = localStorage["ShirtWoot_teeImgSrc"];
+                        var teeImageSrc = self.getTeeImage();
                         jSections.each(
                             function( intSectionIndex )
                             {
@@ -36,13 +38,8 @@ ShirtWoot.prototype.updateInfo = function(callback)
                             }
                         );
 
-                        if (teeImageSrc != localStorage["ShirtWoot_teeImgSrc"])
-                        {
-                            localStorage["ShirtWoot_read"] = "false";
-                            localStorage["ShirtWoot_teeTitle"] = teeTitleText;
-                            localStorage["ShirtWoot_teeImgSrc"] = teeImageSrc;
-                        }
+                        self.setContent(teeTitleText, teeImageSrc);
                     }
-                    callback(localStorage["ShirtWoot_read"]);
+                    callback(self.isRead());
                 });
 }

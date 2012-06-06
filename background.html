@@ -30,7 +30,7 @@
 
     function onUpdateDone(isRead)
     {
-        if(isRead == "false")
+        if(!isRead)
         {
             chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
             chrome.browserAction.setBadgeText({text:"!"});
