@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="Daily Tee Reminder" default="package" basedir=".">
+
+	<property name="project.name"	value="DailyTeeReminder"/>
+	<property name="builds.dir"     value="${basedir}/builds"/>
+	
+	<target name="package" description="Package extension in a zip file">
+		<loadfile property="project.version" srcfile="manifest.json">
+			<filterchain>
+				<linecontains>
+					<contains value="version"/>
+				</linecontains>
+				<striplinebreaks/>
+				<replaceregex pattern=".*&#34;version&#34;[\s ]*:[\s ]*&#34;([0-9\.]*)&#34;.*" replace="\1" />
+			</filterchain>
+		</loadfile>
+		
+		<delete file="${builds.dir}/${project.name}_v${project.version}.zip"/>
+		<zip destfile="${builds.dir}/${project.name}_v${project.version}.zip">
+			<fileset dir="${basedir}">
+                <exclude name=".git"/>
+				<exclude name=".gitignore"/>
+				<exclude name="builds/**"/>
+				<exclude name="webstore/**"/>
+                <exclude name="README.md"/>
+                <exclude name="build.xml"/>
+            </fileset>
+		</zip>
+	</target>	
+	
+	
+</project>
