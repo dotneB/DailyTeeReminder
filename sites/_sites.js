@@ -11,9 +11,9 @@ function loadSites()
                             new ShirtWoot(),
                             new TeeFury(),
                             new RiptApparel(),
-							new TheYeTee(),
-							new Qwertee(),
-							new Tilteed()
+                            new TheYeTee(),
+                            new Qwertee(),
+                            new Tilteed()
                         );
 }
 
