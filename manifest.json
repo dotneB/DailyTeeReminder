@@ -1,26 +1,27 @@
 {
-	"name": "Daily Tee Reminder",
-	"version": "1.2.2",
-	"description": "Daily Tee Reminder will let you know when there is new t-shirts available on various t-shirt websites",
-	"icons": 
-	{ 	
-		"16": "assets/tshirt.png",
-		"32": "assets/tshirt.png",
-		"48": "assets/tshirt.png",
-		"128": "assets/tshirt.png"
-	},  
-	"background_page": "background.html",
-	"browser_action": 
-	{
-		"default_icon": "assets/tshirt.png",
-		"popup": "popup.html"
-	},
-	"permissions": 
-	[
-		"http://feeds.feedburner.com/",
-		"http://api.woot.com/",
-		"http://theyetee.com/feeds/",
-		"http://www.qwertee.com/",
-		"http://www.tilteed.com/home/rss"
-	]
+    "name": "Daily Tee Reminder",
+    "version": "1.3.0",
+    "description": "Daily Tee Reminder will let you know when there is new t-shirts available on various t-shirt websites",
+    "icons": 
+    {     
+        "16": "assets/tshirt.png",
+        "32": "assets/tshirt.png",
+        "48": "assets/tshirt.png",
+        "128": "assets/tshirt.png"
+    },  
+    "background_page": "background.html",
+    "options_page": "options.html",
+    "browser_action": 
+    {
+        "default_icon": "assets/tshirt.png",
+        "popup": "popup.html"
+    },
+    "permissions": 
+    [
+        "http://feeds.feedburner.com/",
+        "http://api.woot.com/",
+        "http://theyetee.com/feeds/",
+        "http://www.qwertee.com/",
+        "http://www.tilteed.com/home/rss"
+    ]
 }

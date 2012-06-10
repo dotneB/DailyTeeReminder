@@ -23,7 +23,10 @@
     {
         for(var i = 0; i < window.sites.length; i++)
         {
-            window.sites[i].updateInfo(onUpdateDone);
+            if(window.sites[i].isEnabled())
+            {
+                window.sites[i].updateInfo(onUpdateDone);
+            }
         }
         setTimeout(updateSites, pollInterval);
     }

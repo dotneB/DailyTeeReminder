@@ -1,0 +1,48 @@
+<html>
+    <!-- Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php -->
+    <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+
+    <script type="text/javascript" src="sites/_BaseSite.js"></script>
+    <script type="text/javascript" src="sites/_sites.js"></script>
+
+    <script type="text/javascript">
+    google.load("feeds", "1");
+    google.setOnLoadCallback(pageLoaded);
+    
+    function getVersion()
+    {
+        $.getJSON(chrome.extension.getURL('manifest.json'), function(manifest){ $("#appName").html(manifest.name + " v" + manifest.version); } );
+    }
+
+    function pageLoaded()
+    {
+        getVersion();
+        loadSites();
+        writeEnabledSites();
+    }
+
+    function writeEnabledSites()
+    {
+        for(var i = 0; i < window.sites.length; i++)
+        {
+            $("#enabledSites").append(
+                "<label for=\"" + window.sites[i].siteName + "\">" + window.sites[i].siteDisplayName + "</label>" +
+                    "<input siteIndex=\"" + i + "\" id=\"" + window.sites[i].siteName + "\" type=\"checkbox\" " + ( window.sites[i].isEnabled() ? "checked=\"checked\"" : "") + " />" +
+                "<br />"
+            );
+            $("#" + window.sites[i].siteName).change(function () 
+            {
+                window.sites[$(this).attr("siteIndex")].setEnabled($(this).is(':checked'));
+            });
+        }
+    }
+    </script>
+    </head>
+    <body>
+        <h1 id="appName">Daily Tee Reminder</h1>
+        <h2>Enabled Sites:</h2>
+        <div id="enabledSites"></div>
+    </body>
+</html>
