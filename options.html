@@ -2,10 +2,19 @@
     <!-- Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php -->
     <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/cupertino/jquery-ui.css" rel="Stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="sites/_BaseSite.js"></script>
     <script type="text/javascript" src="sites/_sites.js"></script>
+    
+    <style type="text/css">
+    .listHeader { float: left; height: 1.5em; line-height: 1.2em; width: 250px; margin-right: 1.2em;}
+    #enabledSites, #disabledSites { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 250px;}
+    #enabledSites li, #disabledSites li { margin: 5px; padding: 5px; font-size: 1.2em; width: 228px; }
+    .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+    </style>
 
     <script type="text/javascript">
     google.load("feeds", "1");
@@ -20,29 +29,56 @@
     {
         getVersion();
         loadSites();
-        writeEnabledSites();
+        writeSites();
+        
+        $( "ul" ).sortable({ 
+            connectWith: "ul", 
+            placeholder: "ui-state-highlight", 
+            stop: function(event, ui)
+            { 
+                $.each($("#enabledSites").sortable('toArray'), function(index, value) { 
+                    //alert(index + ':e ' + value); 
+                    window.sites[value].setEnabled(true);
+                    window.sites[value].setOrder(index);
+                });
+                $.each($("#disabledSites").sortable('toArray'), function(index, value) { 
+                    //alert(index + ':d ' + value); 
+                    window.sites[value].setEnabled(false);
+                    window.sites[value].setOrder(index);
+                });
+            } 
+        }).disableSelection();
     }
 
-    function writeEnabledSites()
+    function writeSites()
     {
-        for(var i = 0; i < window.sites.length; i++)
+        for (var order = 0; order < window.sites.length; order++) 
         {
-            $("#enabledSites").append(
-                "<label for=\"" + window.sites[i].siteName + "\">" + window.sites[i].siteDisplayName + "</label>" +
-                    "<input siteIndex=\"" + i + "\" id=\"" + window.sites[i].siteName + "\" type=\"checkbox\" " + ( window.sites[i].isEnabled() ? "checked=\"checked\"" : "") + " />" +
-                "<br />"
-            );
-            $("#" + window.sites[i].siteName).change(function () 
+            for (var i = 0; i < window.sites.length; i++) 
             {
-                window.sites[$(this).attr("siteIndex")].setEnabled($(this).is(':checked'));
-            });
+                if (window.sites[i].getOrder() == order) 
+                {
+                    var list = "#disabledSites";
+                    if (window.sites[i].isEnabled())
+                    {
+                        list = "#enabledSites";
+                    }
+                    $(list).append(
+                        "<li class=\"ui-state-default\" id=\"" + i + "\">" + window.sites[i].siteDisplayName + "</li>"
+                    );
+                }
+            }
         }
     }
     </script>
+    <title>Daily Tee Reminder: Options</title>
     </head>
     <body>
         <h1 id="appName">Daily Tee Reminder</h1>
-        <h2>Enabled Sites:</h2>
-        <div id="enabledSites"></div>
+        <div class="listHeader"><strong>Enabled Sites</strong></div>
+        <div class="listHeader"><strong>Disabled Sites</strong></div>
+        <br style="clear:both;"/>
+        <ul id="enabledSites"></ul>
+        <ul id="disabledSites"></ul>
     </body>
 </html>

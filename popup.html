@@ -22,11 +22,14 @@
 
     function initSlides()
     {
-        for(var i = 0; i < window.sites.length; i++)
+        for (var order = 0; order < window.sites.length; order++) 
         {
-            if(window.sites[i].isEnabled())
+            for (var i = 0; i < window.sites.length; i++) 
             {
-                window.sites[i].writeSlide($(".slides_container"));
+                if (window.sites[i].isEnabled() && window.sites[i].getOrder() == order) 
+                {
+                    window.sites[i].writeSlide($(".slides_container"));
+                }
             }
         }
         chrome.browserAction.setBadgeText({text:""});

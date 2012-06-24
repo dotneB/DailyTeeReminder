@@ -17,12 +17,9 @@ BaseSite.prototype.getTeeImage     = function()         { return localStorage[th
 BaseSite.prototype.setRead         = function(value)    { localStorage[this.siteName + "_read"] = value; }
 BaseSite.prototype.isRead          = function()         { return localStorage[this.siteName + "_read"] == "true"; }
 BaseSite.prototype.setEnabled      = function(value)    { localStorage[this.siteName + "_enabled"] = value; }
-BaseSite.prototype.getEnabled      = function(value)    { return localStorage[this.siteName + "_enabled"]; }
-BaseSite.prototype.isEnabled       = function()
-{
-    if(this.getEnabled() == undefined || this.getEnabled() == "undefined") this.setEnabled(true);
-    return this.getEnabled() == "true"; 
-}
+BaseSite.prototype.isEnabled       = function()         { return localStorage[this.siteName + "_enabled"] == "true" || localStorage[this.siteName + "_enabled"] == undefined || localStorage[this.siteName + "_enabled"] == "undefined"; }
+BaseSite.prototype.setOrder        = function(value)    { localStorage[this.siteName + "_order"] = value; }
+BaseSite.prototype.getOrder        = function()         { return (localStorage[this.siteName + "_order"] == "undefined" || localStorage[this.siteName + "_order"] == undefined) ? 0 : localStorage[this.siteName + "_order"]; }
 
 BaseSite.prototype.setContent      = function(teeTitle, teeImage)
 {
