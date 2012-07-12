@@ -12,6 +12,9 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
+###### 1.3.0 (Unreleased)
+* Option page with a way to disable/enable/reorder sites
+
 ###### 1.2.2 (2012-06-06)
 * Some spring cleaning
 
