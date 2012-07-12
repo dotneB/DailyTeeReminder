@@ -19,7 +19,7 @@ BaseSite.prototype.isRead          = function()         { return localStorage[th
 BaseSite.prototype.setEnabled      = function(value)    { localStorage[this.siteName + "_enabled"] = value; }
 BaseSite.prototype.isEnabled       = function()         { return localStorage[this.siteName + "_enabled"] == "true" || localStorage[this.siteName + "_enabled"] == undefined || localStorage[this.siteName + "_enabled"] == "undefined"; }
 BaseSite.prototype.setOrder        = function(value)    { localStorage[this.siteName + "_order"] = value; }
-BaseSite.prototype.getOrder        = function()         { return (localStorage[this.siteName + "_order"] == "undefined" || localStorage[this.siteName + "_order"] == undefined) ? 0 : localStorage[this.siteName + "_order"]; }
+BaseSite.prototype.getOrder        = function()         { return (localStorage[this.siteName + "_order"] == "undefined" || localStorage[this.siteName + "_order"] == undefined) ? window.sites.length-1 : localStorage[this.siteName + "_order"]; }
 
 BaseSite.prototype.setContent      = function(teeTitle, teeImage)
 {
