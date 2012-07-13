@@ -8,8 +8,6 @@ function Qwertee()
     this.siteDisplayName = "Qwertee";
     this.siteURL         = "http://www.qwertee.com";
     this.siteFeedURL     = "http://www.qwertee.com/rss/";
-    this.imgWidth        = 480;
-    this.imgHeight       = 480;
 }
 
 Qwertee.prototype.updateInfo = function(callback)
