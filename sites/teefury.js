@@ -33,6 +33,11 @@ TeeFury.prototype.updateInfo = function(callback)
                         tempDiv.innerHTML = result.feed.entries[0].content;
                         var teeImagesRaw = tempDiv.getElementsByTagName("img");
                         var teeImageSrc = teeImagesRaw[0].getAttribute("src");
+						//Use larger image if it exist
+						if(teeImagesRaw.length >= 2)
+						{
+							teeImageSrc = teeImagesRaw[1].getAttribute("src");
+						}
 
                         self.setContent(teeTitleText, teeImageSrc);
                     }
