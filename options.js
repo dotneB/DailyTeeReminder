@@ -18,9 +18,10 @@ function pageLoaded()
         stop: function(event, ui)
         { 
             $.each($("#enabledSites").sortable('toArray'), function(index, value) { 
-                //alert(index + ':e ' + value); 
+                //alert(index + ':e ' + value);
                 window.sites[value].setEnabled(true);
                 window.sites[value].setOrder(index);
+                chrome.extension.getBackgroundPage().forceUpdate();                
             });
             $.each($("#disabledSites").sortable('toArray'), function(index, value) { 
                 //alert(index + ':d ' + value); 
