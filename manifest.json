@@ -9,19 +9,16 @@
         "48": "assets/tshirt.png",
         "128": "assets/tshirt.png"
     },  
-    "background_page": "background.html",
+    "background": 
+    { 
+        "page" : "background.html" 
+    },
     "options_page": "options.html",
     "browser_action": 
     {
         "default_icon": "assets/tshirt.png",
-        "popup": "popup.html"
+        "default_popup": "popup.html"
     },
-    "permissions": 
-    [
-        "http://feeds.feedburner.com/",
-        "http://api.woot.com/",
-        "http://theyetee.com/feeds/",
-        "http://www.qwertee.com/",
-        "http://www.tilteed.com/home/rss"
-    ]
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self' https://www.google.com https://ajax.googleapis.com; object-src 'self'"
 }

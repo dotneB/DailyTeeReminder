@@ -7,39 +7,15 @@
 
     <script type="text/javascript" src="sites/_BaseSite.js"></script>
     <script type="text/javascript" src="sites/_sites.js"></script>
+    
+    <script type="text/javascript" src="sites/shirtwoot.js"></script>
+    <script type="text/javascript" src="sites/teefury.js"></script>
+    <script type="text/javascript" src="sites/riptapparel.js"></script>
+    <script type="text/javascript" src="sites/theyetee.js"></script>
+    <script type="text/javascript" src="sites/qwertee.js"></script>
+    <script type="text/javascript" src="sites/tilteed.js"></script>
 
-    <script type="text/javascript">
-    var pollInterval = 1000 * 60 * 60 * 1;
-    google.load("feeds", "1");
-    google.setOnLoadCallback(pageLoaded);
-
-    function pageLoaded()
-    {
-        loadSites();
-        updateSites();
-    }
-
-    function updateSites()
-    {
-        for(var i = 0; i < window.sites.length; i++)
-        {
-            if(window.sites[i].isEnabled())
-            {
-                window.sites[i].updateInfo(onUpdateDone);
-            }
-        }
-        setTimeout(updateSites, pollInterval);
-    }
-
-    function onUpdateDone(isRead)
-    {
-        if(!isRead)
-        {
-            chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
-            chrome.browserAction.setBadgeText({text:"!"});
-        }
-    }
-    </script>
+    <script type="text/javascript" src="background.js"></script>
     </head>
     <body></body>
 </html>

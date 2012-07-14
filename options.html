@@ -9,6 +9,15 @@
     <script type="text/javascript" src="sites/_BaseSite.js"></script>
     <script type="text/javascript" src="sites/_sites.js"></script>
     
+    <script type="text/javascript" src="sites/shirtwoot.js"></script>
+    <script type="text/javascript" src="sites/teefury.js"></script>
+    <script type="text/javascript" src="sites/riptapparel.js"></script>
+    <script type="text/javascript" src="sites/theyetee.js"></script>
+    <script type="text/javascript" src="sites/qwertee.js"></script>
+    <script type="text/javascript" src="sites/tilteed.js"></script>
+
+    <script type="text/javascript" src="options.js"></script>
+    
     <style type="text/css">
     .listHeader { float: left; height: 1.5em; line-height: 1.2em; width: 250px; margin-right: 1.2em;}
     #enabledSites, #disabledSites { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 250px;}
@@ -16,61 +25,6 @@
     .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
     </style>
 
-    <script type="text/javascript">
-    google.load("feeds", "1");
-    google.setOnLoadCallback(pageLoaded);
-    
-    function getVersion()
-    {
-        $.getJSON(chrome.extension.getURL('manifest.json'), function(manifest){ $("#appName").html(manifest.name + " v" + manifest.version); } );
-    }
-
-    function pageLoaded()
-    {
-        getVersion();
-        loadSites();
-        writeSites();
-        
-        $( "ul" ).sortable({ 
-            connectWith: "ul", 
-            placeholder: "ui-state-highlight", 
-            stop: function(event, ui)
-            { 
-                $.each($("#enabledSites").sortable('toArray'), function(index, value) { 
-                    //alert(index + ':e ' + value); 
-                    window.sites[value].setEnabled(true);
-                    window.sites[value].setOrder(index);
-                });
-                $.each($("#disabledSites").sortable('toArray'), function(index, value) { 
-                    //alert(index + ':d ' + value); 
-                    window.sites[value].setEnabled(false);
-                    window.sites[value].setOrder(index);
-                });
-            } 
-        }).disableSelection();
-    }
-
-    function writeSites()
-    {
-        for (var order = 0; order < window.sites.length; order++) 
-        {
-            for (var i = 0; i < window.sites.length; i++) 
-            {
-                if (window.sites[i].getOrder() == order) 
-                {
-                    var list = "#disabledSites";
-                    if (window.sites[i].isEnabled())
-                    {
-                        list = "#enabledSites";
-                    }
-                    $(list).append(
-                        "<li class=\"ui-state-default\" id=\"" + i + "\">" + window.sites[i].siteDisplayName + "</li>"
-                    );
-                }
-            }
-        }
-    }
-    </script>
     <title>Daily Tee Reminder: Options</title>
     </head>
     <body>
