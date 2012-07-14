@@ -14,6 +14,9 @@ or
 ### Changelogs
 ###### 1.3.0 (Unreleased)
 * Option page with a way to disable/enable/reorder sites
+* Resize images and respect their aspect ratio
+* Use larger image available in the TeeFury rss feed. (suggestion submitted by PsychicMuffin)
+* Upgrade chrome extension manifest to version 2.
 
 ###### 1.2.2 (2012-06-06)
 * Some spring cleaning
@@ -32,6 +35,6 @@ or
 * Initial release. Support for Teefury, shirt.woot and Ript Apparel
 
 ### License 
-Copyright (c) 2011 Benoit Ratte  
+Copyright (c) 2011-2012 Benoit Ratte  
 [MIT License](http://www.opensource.org/licenses/mit-license.php)  
 Inspired by [Chrome TeeFury Extension](http://code.google.com/p/chrome-teefury-extension/)
