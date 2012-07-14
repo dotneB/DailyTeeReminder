@@ -42,6 +42,10 @@ function initSlides()
         }
     }
     chrome.browserAction.setBadgeText({text:""});
+    
+    $(".teeSiteLink").click(function(index) {
+        chrome.tabs.create({"url": $(this).attr("metadata-url")});
+    });
 
     $('#slides').slides({
             preload: true,
