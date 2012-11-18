@@ -28,7 +28,7 @@ Tilteed.prototype.updateInfo = function(callback)
                         var tempDiv = document.createElement("div");
                         tempDiv.innerHTML = result.feed.entries[0].content;
                         var teeImagesRaw = tempDiv.getElementsByTagName("img");
-                        var teeImageSrc = self.siteURL + teeImagesRaw[0].getAttribute("src");
+                        var teeImageSrc = teeImagesRaw[0].getAttribute("src");
 						
                         self.setContent(teeTitleText, teeImageSrc);
                     }

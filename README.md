@@ -12,6 +12,9 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
+###### 1.3.1 (2012-11-18)
+* Bug fix: Fix broken image for Tilteed
+
 ###### [1.3.0](https://github.com/dotneB/DailyTeeReminder/compare/v1.2.2...v1.3.0 "Compare 1.2.2 and 1.3.0") (2012-07-14)
 * Option page with a way to disable/enable/reorder sites
 * Resize images and respect their aspect ratio
