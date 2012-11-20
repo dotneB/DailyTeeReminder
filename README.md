@@ -12,6 +12,9 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
+###### 1.3.2 (2012-11-19)
+* Bug fix: More robust way to handle Tilteed messing around with their image url in their rss feed.
+
 ###### 1.3.1 (2012-11-18)
 * Bug fix: Fix broken image for Tilteed
 
