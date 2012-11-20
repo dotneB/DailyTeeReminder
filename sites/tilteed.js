@@ -30,6 +30,11 @@ Tilteed.prototype.updateInfo = function(callback)
                         var teeImagesRaw = tempDiv.getElementsByTagName("img");
                         var teeImageSrc = teeImagesRaw[0].getAttribute("src");
 						
+						if(teeImageSrc.indexOf(self.siteURL) == -1)
+						{
+							teeImageSrc = self.siteURL + "/" + teeImageSrc;
+						}
+						
                         self.setContent(teeTitleText, teeImageSrc);
                     }
                     callback(self.isRead());
