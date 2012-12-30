@@ -14,6 +14,7 @@ function updateSites()
 {
     for(var i = 0; i < window.sites.length; i++)
     {
+        window.sites[i].load();
         if(window.sites[i].isEnabled())
         {
             window.sites[i].updateInfo(onUpdateDone);
@@ -35,4 +36,9 @@ function forceUpdate()
 {
     clearTimeout(currentTimeout);
     currentTimeout = setTimeout(updateSites, forceUpdateDelay);
+}
+
+function getSites()
+{
+    return window.sites;
 }

@@ -21,16 +21,20 @@ RiptApparel.prototype.updateInfo = function(callback)
                 {
                     if (!result.error)
                     {
-                        // The info is embedded within the title, so we have to manually parse it
-                        var teeTitleText = result.feed.entries[0].title;
+                        for (var i = 0; i < result.feed.entries.length; i++)
+                        {
+                            // The info is embedded within the title, so we have to manually parse it
+                            var shirtName = result.feed.entries[i].title;
 
-                        // The tee's image is embedded within the content, so again, we have to parse it manually
-                        var tempDiv = document.createElement("div");
-                        tempDiv.innerHTML = result.feed.entries[0].content;
-                        var teeImagesRaw = tempDiv.getElementsByTagName("img");
-                        var teeImageSrc = teeImagesRaw[0].getAttribute("src");
-						
-                        self.setContent(teeTitleText, teeImageSrc);
+                            // The tee's image is embedded within the content, so again, we have to parse it manually
+                            var tempDiv = document.createElement("div");
+                            tempDiv.innerHTML = result.feed.entries[i].content;
+                            var rawImage = tempDiv.getElementsByTagName("img");
+                            var imageSrc = rawImage[0].getAttribute("src");
+                            var publishedDate = new Date();//publishedDate not available in the feed.
+
+                            self.addTshirt(shirtName, imageSrc, publishedDate.toString());
+                        }
                     }
                     callback(self.isRead());
                 });

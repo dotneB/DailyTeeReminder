@@ -25,19 +25,18 @@ function resizeAndRespectRatio(image)
 
 function pageLoaded()
 {
-    loadSites();
     initSlides();
 }
 
 function initSlides()
 {
-    for (var order = 0; order < window.sites.length; order++) 
+    for (var order = 0; order < chrome.extension.getBackgroundPage().getSites().length; order++) 
     {
-        for (var i = 0; i < window.sites.length; i++) 
+        for (var i = 0; i < chrome.extension.getBackgroundPage().getSites().length; i++) 
         {
-            if (window.sites[i].isEnabled() && window.sites[i].getOrder() == order) 
+            if (chrome.extension.getBackgroundPage().getSites()[i].isEnabled() && chrome.extension.getBackgroundPage().getSites()[i].getOrder() == order) 
             {
-                window.sites[i].writeSlide($(".slides_container"));
+                chrome.extension.getBackgroundPage().getSites()[i].writeSlide($(".slides_container"));
             }
         }
     }

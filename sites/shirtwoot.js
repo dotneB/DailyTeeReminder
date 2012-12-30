@@ -23,22 +23,25 @@ ShirtWoot.prototype.updateInfo = function(callback)
                     if (!result.error)
                     {
                         var item = $(result.xmlDocument).find('item');
-                        var teeTitleText = item.find('title').text();
+                        var shirtName = item.find('title').text();
                         var jSections = item.children();
 
-                        var teeImageSrc = self.getTeeImage();
+                        var imageSrc = "";
                         jSections.each(
                             function( intSectionIndex )
                             {
                                 if($( this )[ 0 ].nodeName == "woot:detailimage")
                                 {
                                     // Set the term text.
-                                    teeImageSrc = $( this ).text();
+                                    imageSrc = $( this ).text();
                                 }
                             }
                         );
-
-                        self.setContent(teeTitleText, teeImageSrc);
+                        var publishedDate = result.feed.entries[0].publishedDate;
+                        if(imageSrc != "")
+                        {
+                            self.addTshirt(shirtName, imageSrc, publishedDate);
+                        }
                     }
                     callback(self.isRead());
                 });
