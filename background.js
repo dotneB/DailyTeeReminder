@@ -3,8 +3,9 @@ var forceUpdateDelay = 250;
 google.load("feeds", "1");
 google.setOnLoadCallback(pageLoaded);
 var currentTimeout;
-var appName;
-var appVersion;
+var appName = "";
+var appVersion = 0;
+var newVersionLoaded = false;
 
 function loadManifest()
 {
@@ -12,7 +13,20 @@ function loadManifest()
                 function(manifest)
                 {
                     appName = manifest.name;
-                    appVersion = manifest.version; 
+                    appVersion = manifest.version;
+                    if(localStorage.getItem("version") != appVersion)
+                    {
+                        newVersionLoaded = true;
+                    }
+
+                    if(newVersionLoaded)
+                    {
+                        if(appVersion == "1.4.0")
+                        {
+                            localStorage.clear();
+                        }
+                        localStorage.setItem("version", appVersion);
+                    }
                 } 
             );
 }
