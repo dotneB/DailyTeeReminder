@@ -3,9 +3,23 @@ var forceUpdateDelay = 250;
 google.load("feeds", "1");
 google.setOnLoadCallback(pageLoaded);
 var currentTimeout;
+var appName;
+var appVersion;
+
+function loadManifest()
+{
+    $.getJSON(chrome.extension.getURL('manifest.json'), 
+                function(manifest)
+                {
+                    appName = manifest.name;
+                    appVersion = manifest.version; 
+                } 
+            );
+}
 
 function pageLoaded()
 {
+    loadManifest();
     loadSites();
     updateSites();
 }

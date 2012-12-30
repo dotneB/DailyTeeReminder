@@ -3,7 +3,7 @@ google.setOnLoadCallback(pageLoaded);
 
 function getVersion()
 {
-    $.getJSON(chrome.extension.getURL('manifest.json'), function(manifest){ $("#appName").html(manifest.name + " v" + manifest.version); } );
+    $("#appName").html(chrome.extension.getBackgroundPage().appName + " v" + chrome.extension.getBackgroundPage().appVersion);
 }
 
 function pageLoaded()
