@@ -7,7 +7,7 @@ function DesignByHumans()
     this.siteName        = "DesignByHumans";
     this.siteDisplayName = "Design By H&uuml;mans";
     this.siteURL         = "http://www.designbyhumans.com";
-    this.siteFeedURL     = "http://www.designbyhumans.com/feeds/shirt-of-the-day.xml";
+    this.siteFeedURL     = "http://dbh.tumblr.com/rss";
 }
 
 DesignByHumans.prototype.updateInfo = function(callback)
@@ -25,7 +25,7 @@ DesignByHumans.prototype.updateInfo = function(callback)
                         {
                             // The info is embedded within the title, so we have to manually parse it
                             var teeTitleRaw   = result.feed.entries[i].title;
-                            var shirtName  = teeTitleRaw.split(" by ")[0];
+                            var shirtName  = teeTitleRaw.split("\n")[0];
 
                             // The tee's image is embedded within the content, so again, we have to parse it manually
                             var tempDiv = document.createElement("div");
