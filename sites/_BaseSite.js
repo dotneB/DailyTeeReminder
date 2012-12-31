@@ -7,7 +7,7 @@ function BaseSite()
 
     this.loadedData      = { 
                             'enabled': true, 
-                            'order': 0, 
+                            'order': -1, 
                             'read':false,
                             'lastUpdate':0,
                             'shirts': [] 
@@ -21,7 +21,7 @@ BaseSite.prototype.load            = function()
     {
         this.loadedData      = { 
                                 'enabled': true, 
-                                'order': 0, 
+                                'order': -1, 
                                 'read':false,
                                 'lastUpdate':0,
                                 'shirts': [] 
@@ -39,9 +39,9 @@ BaseSite.prototype.updateInfo      = function()         {}
 BaseSite.prototype.setRead         = function(value)    { this.loadedData["read"] = value; }
 BaseSite.prototype.isRead          = function()         { return this.loadedData["read"] == true; }
 BaseSite.prototype.setEnabled      = function(value)    { this.loadedData["enabled"] = value; }
-BaseSite.prototype.isEnabled       = function()         { return this.loadedData["enabled"] == true || this.loadedData["enabled"] == undefined || this.loadedData["enabled"] == "undefined"; }
+BaseSite.prototype.isEnabled       = function()         { return this.loadedData["enabled"] == true; }
 BaseSite.prototype.setOrder        = function(value)    { this.loadedData["order"] = value; }
-BaseSite.prototype.getOrder        = function()         { return (this.loadedData["order"] == "undefined" || this.loadedData["order"] == undefined) ? window.sites.length-1 : this.loadedData["order"]; }
+BaseSite.prototype.getOrder        = function()         { return this.loadedData["order"] == -1 ? window.sites.length-1 : this.loadedData["order"]; }
 
 BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
 {
