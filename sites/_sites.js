@@ -15,7 +15,8 @@ function loadSites()
                             new RiptApparel(),
                             new TheYeTee(),
                             new Qwertee(),
-                            new DesignByHumans()
+                            new DesignByHumans(),
+                            new OtherTees()
                         );
 }
 
