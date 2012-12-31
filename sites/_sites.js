@@ -14,7 +14,8 @@ function loadSites()
                             new TeeFury(),
                             new RiptApparel(),
                             new TheYeTee(),
-                            new Qwertee()
+                            new Qwertee(),
+                            new DesignByHumans()
                         );
 }
 
