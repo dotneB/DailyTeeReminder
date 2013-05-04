@@ -9,7 +9,6 @@ function BaseSite()
                             'enabled': true, 
                             'order': -1, 
                             'read':false,
-                            'lastUpdate':0,
                             'shirts': [] 
                             };
 }
@@ -23,7 +22,6 @@ BaseSite.prototype.load            = function()
                                 'enabled': true, 
                                 'order': -1, 
                                 'read':false,
-                                'lastUpdate':0,
                                 'shirts': [] 
                                 };
     }
@@ -47,6 +45,7 @@ BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
 {
     this.load();
     console.log(this.siteName);
+    console.log("Checking " + title + ", " + dateStr);
     function DateStringToInt(d)
     {
         function pad(n){return n<10 ? '0'+n : n}
@@ -54,29 +53,36 @@ BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
     }
     var date = DateStringToInt(new Date(dateStr));
     console.log(date);
+    for (var i = this.loadedData.shirts.length - 1; i >= 0; i--) 
+    {
+        if(date > this.loadedData.shirts[i].date)
+        {
+            console.log("It's a new day, remove all the old shirts");
+            this.loadedData.shirts.splice(i,1);//It's a new day, remove all the old shirts
+        }
+        else if(date < this.loadedData.shirts[i].date)
+        {
+            console.log("Trying to add an older short, skiping");
+            return;
+        }
+    };
 
+    var shirtFound = false;
     for(var i = 0; i < this.loadedData.shirts.length; i++)
     {
         if(this.loadedData.shirts[i].title == title)
         {
             console.log("Shirt already exist");
-            return; //Shirt already exist
+            shirtFound = true;
         }
     }
 
-    if(this.loadedData.lastUpdate > date)
+    if(shirtFound)
     {
-        console.log("Trying to add a shirt older that the one we already have");
-        return;//Trying to add a shirt older that the one we already have
-    }
-    else if(this.loadedData.lastUpdate != date)
-    {
-        console.log("It's a new day, remove all the old shirts");
-        this.loadedData.shirts.splice(i,1);//It's a new day, remove all the old shirts
+         return; //Shirt already exist
     }
     console.log("Add new shirt");
-    this.loadedData.lastUpdate = date;
-    this.loadedData.shirts.push({'title': title, 'imgSrc': imageSrc});
+    this.loadedData.shirts.push({'title': title, 'imgSrc': imageSrc, 'date': date});
     this.setRead(false);
     this.save();
 }
