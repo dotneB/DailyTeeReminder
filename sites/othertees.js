@@ -18,6 +18,7 @@ OtherTees.prototype.updateInfo = function(callback)
     feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
 
     // Process the feed, building the display
+    console.log("WARNING: Since images path in OtherTees's rss are relative, loading their feed will produce 'Failed to load resource' errors in the logs. This is unavoidable");
     feed.load(function(result)
                 {
                     if (!result.error)
@@ -40,6 +41,11 @@ OtherTees.prototype.updateInfo = function(callback)
 
                             self.addTshirt(shirtName, imageSrc, publishedDate);
                         }
+                    }
+                    else
+                    {
+                        console.log("Error loading " + self.siteName);
+                        console.log(result.error);
                     }
                     callback(self.isRead());
                 });

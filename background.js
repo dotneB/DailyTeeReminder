@@ -40,6 +40,7 @@ function pageLoaded()
 
 function updateSites()
 {
+    console.log("\n\nRefreshing t-shirt sites");
     for(var i = 0; i < window.sites.length; i++)
     {
         window.sites[i].load();

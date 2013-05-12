@@ -39,6 +39,11 @@ TheYeTee.prototype.updateInfo = function(callback)
                         };
                         
                     }
+                    else
+                    {
+                        console.log("Error loading " + self.siteName);
+                        console.log(result.error);
+                    }
                     callback(self.isRead());
                 });
 }

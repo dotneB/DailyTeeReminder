@@ -37,6 +37,11 @@ RiptApparel.prototype.updateInfo = function(callback)
                             self.addTshirt(shirtName, imageSrc, publishedDate.toString());
                         }
                     }
+                    else
+                    {
+                        console.log("Error loading " + self.siteName);
+                        console.log(result.error);
+                    }
                     callback(self.isRead());
                 });
 }

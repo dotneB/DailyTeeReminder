@@ -37,6 +37,11 @@ Qwertee.prototype.updateInfo = function(callback)
                             self.addTshirt(shirtName, imageSrc, publishedDate);
                         }
                     }
+                    else
+                    {
+                        console.log("Error loading " + self.siteName);
+                        console.log(result.error);
+                    }
                     callback(self.isRead());
                 });
 }
