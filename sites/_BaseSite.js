@@ -4,6 +4,7 @@ function BaseSite()
     this.siteDisplayName = "";
     this.siteURL         = "";
     this.siteFeedURL     = "";
+    this.supportMultiShirt = false;
 
     this.loadedData      = { 
                             'enabled': true, 
@@ -44,7 +45,7 @@ BaseSite.prototype.getOrder        = function()         { return this.loadedData
 BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
 {
     this.load();
-    console.log(this.siteName);
+    console.log(this.siteName + " -----------------------------------------------------------------------");
     console.log("Checking " + title + ", " + dateStr);
     function DateStringToInt(d)
     {
@@ -52,20 +53,22 @@ BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
         return parseInt(d.getUTCFullYear()+''+ pad(d.getUTCMonth()+1)+''+ pad(d.getUTCDate()));
     }
     var date = DateStringToInt(new Date(dateStr));
-    console.log(date);
-    for (var i = this.loadedData.shirts.length - 1; i >= 0; i--) 
+    if(this.supportMultiShirt)
     {
-        if(date > this.loadedData.shirts[i].date)
+        for (var i = this.loadedData.shirts.length - 1; i >= 0; i--) 
         {
-            console.log("It's a new day, remove all the old shirts");
-            this.loadedData.shirts.splice(i,1);//It's a new day, remove all the old shirts
-        }
-        else if(date < this.loadedData.shirts[i].date)
-        {
-            console.log("Trying to add an older short, skiping");
-            return;
-        }
-    };
+            if(date > this.loadedData.shirts[i].date)
+            {
+                console.log("It's a new day, remove all the old shirts");
+                this.loadedData.shirts.splice(i,1);//It's a new day, remove all the old shirts
+            }
+            else if(date < this.loadedData.shirts[i].date)
+            {
+                console.log("Trying to add an older shirt, skiping");
+                return;
+            }
+        };
+    }
 
     var shirtFound = false;
     for(var i = 0; i < this.loadedData.shirts.length; i++)
@@ -82,6 +85,10 @@ BaseSite.prototype.addTshirt       = function(title, imageSrc, dateStr)
          return; //Shirt already exist
     }
     console.log("Add new shirt");
+    if(!this.supportMultiShirt)
+    {
+        this.loadedData.shirts = [];
+    }
     this.loadedData.shirts.push({'title': title, 'imgSrc': imageSrc, 'date': date});
     this.setRead(false);
     this.save();

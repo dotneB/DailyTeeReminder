@@ -8,13 +8,14 @@ function OtherTees()
     this.siteDisplayName = "OtherTees";
     this.siteURL         = "http://www.othertees.com";
     this.siteFeedURL     = "http://www.othertees.com/feed/";
+    this.supportMultiShirt = true;
 }
 
 OtherTees.prototype.updateInfo = function(callback)
 {
     var self = this; // Keep a reference to this, to be used inside the feed callback
     var feed = new google.feeds.Feed(self.siteFeedURL);
-    feed.setNumEntries(3);
+    feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
 
     // Process the feed, building the display
     feed.load(function(result)

@@ -8,13 +8,14 @@ function Qwertee()
     this.siteDisplayName = "Qwertee";
     this.siteURL         = "http://www.qwertee.com";
     this.siteFeedURL     = "http://www.qwertee.com/rss/";
+    this.supportMultiShirt = true;
 }
 
 Qwertee.prototype.updateInfo = function(callback)
 {
     var self = this; // Keep a reference to this, to be used inside the feed callback
     var feed = new google.feeds.Feed(self.siteFeedURL);
-    feed.setNumEntries(3);
+    feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
 
     // Process the feed, building the display
     feed.load(function(result)

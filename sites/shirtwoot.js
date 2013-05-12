@@ -8,13 +8,14 @@ function ShirtWoot()
     this.siteDisplayName = "Shirt Woot";
     this.siteURL         = "http://shirt.woot.com";
     this.siteFeedURL     = "http://api.woot.com/1/sales/current.rss/shirt.woot.com";
+    this.supportMultiShirt = true;
 }
 
 ShirtWoot.prototype.updateInfo = function(callback)
 {
     var self = this; // Keep a reference to this, to be used inside the feed callback
     var feed = new google.feeds.Feed(self.siteFeedURL);
-    feed.setNumEntries(1);
+    feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
     feed.setResultFormat(google.feeds.Feed.MIXED_FORMAT);
 
     // Process the feed, building the display

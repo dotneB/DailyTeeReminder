@@ -30,13 +30,14 @@ function pageLoaded()
 
 function initSlides()
 {
-    for (var order = 0; order < chrome.extension.getBackgroundPage().getSites().length; order++) 
+    var bgPage = chrome.extension.getBackgroundPage();  
+    for (var order = 0; order < bgPage.getSites().length; order++) 
     {
-        for (var i = 0; i < chrome.extension.getBackgroundPage().getSites().length; i++) 
+        for (var i = 0; i < bgPage.getSites().length; i++) 
         {
-            if (chrome.extension.getBackgroundPage().getSites()[i].isEnabled() && chrome.extension.getBackgroundPage().getSites()[i].getOrder() == order) 
+            if (bgPage.getSites()[i].isEnabled() && bgPage.getSites()[i].getOrder() == order) 
             {
-                chrome.extension.getBackgroundPage().getSites()[i].writeSlide($(".slides_container"));
+                bgPage.getSites()[i].writeSlide($(".slides_container"));
             }
         }
     }

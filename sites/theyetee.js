@@ -8,13 +8,14 @@ function TheYeTee()
     this.siteDisplayName = "TheYeTee";
     this.siteURL         = "http://theyetee.com/";
     this.siteFeedURL     = "http://theyetee.com/feeds/shirts.php";
+    this.supportMultiShirt = true;
 }
 
 TheYeTee.prototype.updateInfo = function(callback)
 {
     var self = this; // Keep a reference to this, to be used inside the feed callback
     var feed = new google.feeds.Feed(self.siteFeedURL);
-    feed.setNumEntries(3);
+    feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
 
     // Process the feed, building the display
     feed.load(function(result)
