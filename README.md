@@ -12,10 +12,16 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
-###### 1.3.2 (2012-11-19)
+###### [1.4.0](https://github.com/dotneB/DailyTeeReminder/compare/v1.3.2...v1.4.0 "Compare 1.3.2 and 1.4.0") (2013-08-13)
+* Remove tilteed
+* Added DesignByHumans.com
+* Added OtherTees.com
+* Change save format to support sites with multiple shirts per day
+
+###### [1.3.2](https://github.com/dotneB/DailyTeeReminder/compare/v1.3.1...v1.3.2 "Compare 1.3.1 and 1.3.2") (2012-11-19)
 * Bug fix: More robust way to handle Tilteed messing around with their image url in their rss feed.
 
-###### 1.3.1 (2012-11-18)
+###### [1.3.1](https://github.com/dotneB/DailyTeeReminder/compare/v1.3.0...v1.3.1 "Compare 1.3.0 and 1.3.1") (2012-11-18)
 * Bug fix: Fix broken image for Tilteed
 
 ###### [1.3.0](https://github.com/dotneB/DailyTeeReminder/compare/v1.2.2...v1.3.0 "Compare 1.2.2 and 1.3.0") (2012-07-14)
