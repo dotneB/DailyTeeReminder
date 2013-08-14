@@ -35,7 +35,10 @@ TheYeTee.prototype.updateInfo = function(callback)
                             var imageSrc = rawImage[0].getAttribute("src");
                             var publishedDate = result.feed.entries[i].publishedDate;
 
-                            self.addTshirt(shirtName, imageSrc, publishedDate);
+                            if(shirtName.toLowerCase().indexOf("(alt)") == -1) //Don't add "alt"s
+                            {
+                                self.addTshirt(shirtName, imageSrc, publishedDate);
+                            }
                         };
                         
                     }
