@@ -8,13 +8,14 @@ function ShirtWoot()
     this.siteDisplayName = "Shirt Woot";
     this.siteURL         = "http://shirt.woot.com";
     this.siteFeedURL     = "http://api.woot.com/1/sales/current.rss/shirt.woot.com";
+    this.supportMultiShirt = true;
 }
 
 ShirtWoot.prototype.updateInfo = function(callback)
 {
     var self = this; // Keep a reference to this, to be used inside the feed callback
     var feed = new google.feeds.Feed(self.siteFeedURL);
-    feed.setNumEntries(1);
+    feed.setNumEntries(self.supportMultiShirt ? 3 : 1);
     feed.setResultFormat(google.feeds.Feed.MIXED_FORMAT);
 
     // Process the feed, building the display
@@ -23,22 +24,30 @@ ShirtWoot.prototype.updateInfo = function(callback)
                     if (!result.error)
                     {
                         var item = $(result.xmlDocument).find('item');
-                        var teeTitleText = item.find('title').text();
+                        var shirtName = item.find('title').text();
                         var jSections = item.children();
 
-                        var teeImageSrc = self.getTeeImage();
+                        var imageSrc = "";
                         jSections.each(
                             function( intSectionIndex )
                             {
                                 if($( this )[ 0 ].nodeName == "woot:detailimage")
                                 {
                                     // Set the term text.
-                                    teeImageSrc = $( this ).text();
+                                    imageSrc = $( this ).text();
                                 }
                             }
                         );
-
-                        self.setContent(teeTitleText, teeImageSrc);
+                        var publishedDate = result.feed.entries[0].publishedDate;
+                        if(imageSrc != "")
+                        {
+                            self.addTshirt(shirtName, imageSrc, publishedDate);
+                        }
+                    }
+                    else
+                    {
+                        console.log("Error loading " + self.siteName);
+                        console.log(result.error);
                     }
                     callback(self.isRead());
                 });

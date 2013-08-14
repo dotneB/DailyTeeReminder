@@ -3,13 +3,13 @@ google.setOnLoadCallback(pageLoaded);
 
 function getVersion()
 {
-    $.getJSON(chrome.extension.getURL('manifest.json'), function(manifest){ $("#appName").html(manifest.name + " v" + manifest.version); } );
+    $("#appName").html(chrome.extension.getBackgroundPage().appName + " v" + chrome.extension.getBackgroundPage().appVersion);
 }
 
 function pageLoaded()
 {
     getVersion();
-    loadSites();
+    //loadSites();
     writeSites();
     
     $( "ul" ).sortable({ 
@@ -19,14 +19,16 @@ function pageLoaded()
         { 
             $.each($("#enabledSites").sortable('toArray'), function(index, value) { 
                 //alert(index + ':e ' + value);
-                window.sites[value].setEnabled(true);
-                window.sites[value].setOrder(index);
+                chrome.extension.getBackgroundPage().getSites()[value].setEnabled(true);
+                chrome.extension.getBackgroundPage().getSites()[value].setOrder(index);
+                chrome.extension.getBackgroundPage().getSites()[value].save();
                 chrome.extension.getBackgroundPage().forceUpdate();                
             });
             $.each($("#disabledSites").sortable('toArray'), function(index, value) { 
                 //alert(index + ':d ' + value); 
-                window.sites[value].setEnabled(false);
-                window.sites[value].setOrder(index);
+                chrome.extension.getBackgroundPage().getSites()[value].setEnabled(false);
+                chrome.extension.getBackgroundPage().getSites()[value].setOrder(index);
+                chrome.extension.getBackgroundPage().getSites()[value].save();
             });
         } 
     }).disableSelection();
@@ -34,19 +36,19 @@ function pageLoaded()
 
 function writeSites()
 {
-    for (var order = 0; order < window.sites.length; order++) 
+    for (var order = 0; order < chrome.extension.getBackgroundPage().getSites().length; order++) 
     {
-        for (var i = 0; i < window.sites.length; i++) 
+        for (var i = 0; i < chrome.extension.getBackgroundPage().getSites().length; i++) 
         {
-            if (window.sites[i].getOrder() == order) 
+            if (chrome.extension.getBackgroundPage().getSites()[i].getOrder() == order) 
             {
                 var list = "#disabledSites";
-                if (window.sites[i].isEnabled())
+                if (chrome.extension.getBackgroundPage().getSites()[i].isEnabled())
                 {
                     list = "#enabledSites";
                 }
                 $(list).append(
-                    "<li class=\"ui-state-default\" id=\"" + i + "\">" + window.sites[i].siteDisplayName + "</li>"
+                    "<li class=\"ui-state-default\" id=\"" + i + "\">" + chrome.extension.getBackgroundPage().getSites()[i].siteDisplayName + "</li>"
                 );
             }
         }
