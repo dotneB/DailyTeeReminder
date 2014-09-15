@@ -1,6 +1,3 @@
-google.load("feeds", "1");
-google.setOnLoadCallback(pageLoaded);
-
 function resizeAndRespectRatio(image)
 {
     var maxWidth = 722; // Max width for the image
@@ -23,24 +20,38 @@ function resizeAndRespectRatio(image)
     $(image).css("width", newWidth);    // Scale width based on ratio
 }
 
-function pageLoaded()
+$( document ).ready(function()
 {
     initSlides();
-}
+});
 
 function initSlides()
 {
-    var bgPage = chrome.extension.getBackgroundPage();  
-    for (var order = 0; order < bgPage.getSites().length; order++) 
+    var latestShirts = JSON.parse( localStorage.getItem("latestShirts") )
+    var seenShirts = JSON.parse( localStorage.getItem("seenShirts") )
+    var seenNow = []
+    for (var i = 0; i < latestShirts.length; i++) 
     {
-        for (var i = 0; i < bgPage.getSites().length; i++) 
+        var seen = $.inArray(latestShirts[i].id, seenShirts) != -1;
+        if(seen && latestShirts[i].site.id == 1)
         {
-            if (bgPage.getSites()[i].isEnabled() && bgPage.getSites()[i].getOrder() == order) 
-            {
-                bgPage.getSites()[i].writeSlide($(".slides_container"));
-            }
+            continue;
         }
+        $(".slides_container").append(
+            "<div class=\"slide\">" +
+                "<div class=\"slide_content\">" +
+                    ( seen ? "" : "<img src=\"assets/new-ribbon.png\" width=\"112\" height=\"112\" alt=\"New Ribbon\" id=\"ribbon\">" ) +
+                    "<a href=\"#\" class=\"teeSiteLink\" metadata-url=\"" + latestShirts[i].url + "\"><img class=\"teeImage\" src=\"" + latestShirts[i].image_url + "\"></a>" +                
+                "</div>" +
+                "<div class=\"caption\" style=\"bottom:0\">" +
+                    "<p>" + latestShirts[i].site.name + ": " + latestShirts[i].name +"</p>" +
+                "</div>" +
+            "</div>"
+        );
+
+        seenNow.push( latestShirts[i].id );
     }
+    localStorage.setItem("seenShirts", JSON.stringify(seenNow) );
     chrome.browserAction.setBadgeText({text:""});
     
     $(".teeSiteLink").click(function(index) {

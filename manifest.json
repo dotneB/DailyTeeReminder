@@ -1,6 +1,6 @@
 {
     "name": "Daily Tee Reminder",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "description": "Daily Tee Reminder will let you know when there is new t-shirts available on various t-shirt websites",
     "icons": 
     {     
@@ -13,12 +13,11 @@
     { 
         "page" : "background.html" 
     },
-    "options_page": "options.html",
     "browser_action": 
     {
         "default_icon": "assets/tshirt.png",
         "default_popup": "popup.html"
     },
     "manifest_version": 2,
-    "content_security_policy": "script-src 'self' https://www.google.com https://ajax.googleapis.com; object-src 'self'"
+    "content_security_policy": "script-src 'self'; object-src 'self'"
 }

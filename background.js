@@ -1,73 +1,61 @@
 var pollInterval = 1000 * 60 * 60 * 1;
 var forceUpdateDelay = 250;
-google.load("feeds", "1");
-google.setOnLoadCallback(pageLoaded);
-var currentTimeout;
-var appName = "";
-var appVersion = 0;
-var newVersionLoaded = false;
 
-function loadManifest()
+var currentTimeout;
+
+function verifyVersion()
 {
     $.getJSON(chrome.extension.getURL('manifest.json'), 
-                function(manifest)
-                {
-                    appName = manifest.name;
-                    appVersion = manifest.version;
-                    if(localStorage.getItem("version") != appVersion)
-                    {
-                        newVersionLoaded = true;
-                    }
-
-                    if(newVersionLoaded)
-                    {
-                        if(appVersion == "1.4.0")
-                        {
-                            localStorage.clear();
-                        }
-                        localStorage.setItem("version", appVersion);
-                    }
-                } 
-            );
-}
-
-function pageLoaded()
-{
-    loadManifest();
-    loadSites();
-    updateSites();
-}
-
-function updateSites()
-{
-    console.log("\n\nRefreshing t-shirt sites");
-    for(var i = 0; i < window.sites.length; i++)
-    {
-        window.sites[i].load();
-        if(window.sites[i].isEnabled())
+        function(manifest)
         {
-            window.sites[i].updateInfo(onUpdateDone);
-        }
-    }
-    currentTimeout = setTimeout(updateSites, pollInterval);
+            var newVersionLoaded = false;
+            var appVersion = manifest.version;
+            if(localStorage.getItem("version") != appVersion)
+            {
+                newVersionLoaded = true;
+            }
+
+            if(newVersionLoaded)
+            {
+                if(appVersion == "1.4.0" || appVersion == "2.0.0")
+                {
+                    localStorage.clear();
+                }
+                localStorage.setItem("version", appVersion);
+            }
+        } 
+    );
 }
 
-function onUpdateDone(isRead)
+$( document ).ready(function()
 {
-    if(!isRead)
-    {
-        chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
-        chrome.browserAction.setBadgeText({text:"!"});
-    }
+    verifyVersion();
+    loadLatestShirts();
+    
+});
+
+function loadLatestShirts()
+{
+    $.getJSON('http://dailyteeserver.herokuapp.com/latest.json', 
+        function(latestShirts)
+        {
+            localStorage.setItem("latestShirts", JSON.stringify(latestShirts) );
+            var seenShirts = JSON.parse( localStorage.getItem("seenShirts") )
+            for (var i = 0; i < latestShirts.length; i++) 
+            {
+                if($.inArray(latestShirts[i].id, seenShirts) == -1)
+                {
+                    chrome.browserAction.setBadgeBackgroundColor({color:[214,1,2,255]});
+                    chrome.browserAction.setBadgeText({text:"!"});
+                }
+            }
+        } 
+    );
+    currentTimeout = setTimeout(loadLatestShirts, pollInterval);
 }
 
 function forceUpdate()
 {
     clearTimeout(currentTimeout);
-    currentTimeout = setTimeout(updateSites, forceUpdateDelay);
-}
-
-function getSites()
-{
-    return window.sites;
+    currentTimeout = setTimeout(loadLatestShirts, forceUpdateDelay);
 }
