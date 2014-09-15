@@ -12,6 +12,11 @@ or
 [Fork it](https://github.com/dotneB/DailyTeeReminder/), add it and send in a pull request
 
 ### Changelogs
+###### [2.0.0](https://github.com/dotneB/DailyTeeReminder/compare/v1.4.0...v2.0.0 "Compare 1.4.0 and 2.0.0") (2014-09-14)
+* Removed DesignByHumans.com
+* Fixed TeeFury not updating
+* Moved feed parsing to a backend server
+
 ###### [1.4.0](https://github.com/dotneB/DailyTeeReminder/compare/v1.3.2...v1.4.0 "Compare 1.3.2 and 1.4.0") (2013-08-13)
 * Remove tilteed
 * Added DesignByHumans.com
@@ -47,6 +52,6 @@ or
 * Initial release. Support for Teefury, shirt.woot and Ript Apparel
 
 ### License 
-Copyright (c) 2011-2012 Benoit Ratte  
+Copyright (c) 2011-2014 Benoit Ratte  
 [MIT License](http://www.opensource.org/licenses/mit-license.php)  
 Inspired by [Chrome TeeFury Extension](http://code.google.com/p/chrome-teefury-extension/)
